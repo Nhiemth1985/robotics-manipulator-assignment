@@ -1,8 +1,9 @@
 function [T, Rz, deg] = zRotation(global_pt1, global_pt2, local_pt2)
 %ZROTATION Returns the rotation matrix and homogeneous transform matrix
-%           relating Frame A to Frame B
+%           relating local frame to global frame
+%
 %   Assumptions: there is a rotation only about the z axis
-%                global_pt1 is the center of the local frame
+%                global_pt1 is the origin of the local frame
 %                global pts 1 and 2 are along the same axes of the local frame
 
 for i = 1:3
