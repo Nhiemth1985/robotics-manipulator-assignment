@@ -7,7 +7,7 @@ load("Tool Transformations")
 
 
 % Grinder approach with portafilter tool
-T_grinder_rest / Ttcp_portaRest
+T_grinder_rest / Ttcp_portaRest;
 
 % Grinder Start Button
 T_grinder_start / Ttcp_grinderPush;
@@ -15,3 +15,5 @@ T_grinder_start / Ttcp_grinderPush;
 % Grinder stop button
 T_grinder_stop / Ttcp_grinderPush;
 
+% Grinder lever
+T_grinder_lever / Ttcp_grinderPull

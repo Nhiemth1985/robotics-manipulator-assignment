@@ -6,7 +6,7 @@ noRot = rotz(0);
 % Grinder tool
 Ttcp_grinderTool = [Rtcp_tool [0; 0; 0]; 0 0 0 1];
 TgrinderTool_push = [noRot [0; 0; 102.82]; 0 0 0 1];
-TgrinderTool_pull = [rotx(180) [-50; 0; 67.06]; 0 0 0 1];
+TgrinderTool_pull = [roty(180) [-50; 0; 67.06]; 0 0 0 1];
 
 Ttcp_grinderPush = Ttcp_grinderTool*TgrinderTool_push;
 Ttcp_grinderPull = Ttcp_grinderTool*TgrinderTool_pull;

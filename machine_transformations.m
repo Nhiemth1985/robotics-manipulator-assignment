@@ -47,7 +47,7 @@ grinder_lever_global = Tw_grinder*[grinder_lever_local;1];
 T_grinder_rest = [rotz(deg_grinder)*roty(-90) grinder_rest_global(1:3); 0 0 0 1];
 T_grinder_start = [roty(90)*rotx(-32.5) grinder_start_global(1:3); 0 0 0 1];
 T_grinder_stop = [roty(90)*rotx(-32.5) grinder_stop_global(1:3); 0 0 0 1];
-T_lever = [rotz(0) grinder_lever_global(1:3); 0 0 0 1];
+T_grinder_lever = [rotz(45)*rotx(-90) grinder_lever_global(1:3); 0 0 0 1];
 
 
 
