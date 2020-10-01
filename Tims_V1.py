@@ -80,7 +80,7 @@ lever_approach = Mat(lever_approach_np.tolist())
 #robot.MoveJ(lever_approach, True)
 
 # Move robot to home
-#robot.MoveJ(target_home, blocking=True)
+robot.MoveJ(target_home, blocking=True)
 
 # Pick up portafilter tool
 robot.MoveJ(intermediate)
@@ -112,6 +112,7 @@ robot.MoveL(grinder_stop_press, True)
 robot.MoveL(grinder_stop_approach, True)
 
 # Pull grinder lever
+robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
 robot.MoveJ(grinder_lever_approach, True)
 
 robot.MoveJ(grinder_lever_pull_0, True)
