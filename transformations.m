@@ -16,4 +16,10 @@ T_grinder_start / Ttcp_grinderPush;
 T_grinder_stop / Ttcp_grinderPush;
 
 % Grinder lever
-T_grinder_lever / Ttcp_grinderPull
+T_grinder_lever / Ttcp_grinderPull;
+
+% Tamper level
+T_tamper_level / Ttcp_portaCenter;
+
+% Tamper press
+T_tamper_press / Ttcp_portaCenter

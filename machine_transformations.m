@@ -36,11 +36,17 @@ grinder_start_local = [-80.71; 94.26; -227.68];
 grinder_stop_local = [-64.42; 89.82; -227.68];
 grinder_lever_local = [-35.82; 83.8; -153];
 
+tamper_level_local = [70; 0; -32]; 
+tamper_press_local = [-80; 0; -55];
+
 % Global points
 grinder_rest_global = Tw_grinder*[grinder_rest_local;1];
 grinder_start_global = Tw_grinder*[grinder_start_local;1];
 grinder_stop_global = Tw_grinder*[grinder_stop_local;1];
 grinder_lever_global = Tw_grinder*[grinder_lever_local;1];
+
+tamper_level_global = Tw_tamper*[tamper_level_local;1];
+tamper_press_global = Tw_tamper*[tamper_press_local;1];
 
 % Define transformation matricies, need to determine the orientation of the
 % frames
@@ -48,6 +54,12 @@ T_grinder_rest = [rotz(deg_grinder)*roty(-90) grinder_rest_global(1:3); 0 0 0 1]
 T_grinder_start = [roty(90)*rotx(-32.5) grinder_start_global(1:3); 0 0 0 1];
 T_grinder_stop = [roty(90)*rotx(-32.5) grinder_stop_global(1:3); 0 0 0 1];
 T_grinder_lever = [rotz(45)*rotx(-90) grinder_lever_global(1:3); 0 0 0 1];
+
+T_tamper_level_local = [roty(-90)*rotx(-90) tamper_level_local; 0 0 0 1];
+T_tamper_press_local = [roty(-90)*rotx(-90) tamper_press_local; 0 0 0 1];
+
+T_tamper_level = Tw_tamper*T_tamper_level_local;
+T_tamper_press = Tw_tamper*T_tamper_press_local;
 
 
 
