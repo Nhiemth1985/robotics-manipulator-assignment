@@ -62,5 +62,10 @@ T_tamper_level = Tw_tamper*T_tamper_level_local;
 T_tamper_press = Tw_tamper*T_tamper_press_local;
 
 
+% Silvia deliver
+silvia_deliver_global = [-150; -300; 300];
+T_silvia_deliver = [roty(-90)*rotx(-45) silvia_deliver_global; 0 0 0 1];
+
+
 
 save('Machine Transforms')

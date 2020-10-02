@@ -47,6 +47,9 @@ tamper_level_2 = [-18.107326, -106.294823, -121.562597, -120.935006, -137.824646
 tamper_press_1 = [148.796873, -79.567094, -222.797280, -73.042598, 29.420526, 153.496873]
 tamper_press_2 = [7.321906, -98.160660, -134.443571, -119.261240, -112.735810, 143.161025]
 
+silvia_deliver_1 = [-22.012830, -96.710934, -146.480964, -65.766794, -9.661230, 89.359257]
+silvia_deliver_2 = [-72.302374, -107.859273, 266.687385, -167.255511, -297.054130, 143.855340]
+
 bstart_approach_np = np.array([
     
  [  -0.4116   ,-0.3454  ,  0.8434 , 385.6817],
@@ -85,6 +88,12 @@ tamp_approach_np = np.array([
   [  0.6373  , -0.7595   , 0.1305  ,132.5053],
    [      0  ,       0  ,       0 ,   1.0000]])
 
+silvia_approach_np = np.array([
+   [ 0.6010 ,   0.3838 ,  -0.7011,  -48.9496],
+    [0.4823 ,   0.5252 ,   0.7011, -401.0504],
+   [ 0.6373  , -0.7595  ,  0.1305 , 276.4353],
+     [    0  ,       0  ,       0 ,   1.0000]])
+
 
 bstart_approach = Mat(bstart_approach_np.tolist())
 bstop_approach = Mat(bstop_approach_np.tolist())
@@ -92,8 +101,9 @@ rest_approach = Mat(rest_approach_np.tolist())
 lever_approach = Mat(lever_approach_np.tolist())
 level_approach = Mat(level_approach_np.tolist())
 tamp_approach = Mat(tamp_approach_np.tolist())
+silvia_approach = Mat(silvia_approach_np.tolist())
 
-##robot.MoveJ(tamp_approach, True)
+##robot.MoveJ(silvia_approach, True)
 ##robodk.pause(2)
 
 # Move robot to home
@@ -112,11 +122,11 @@ robot.MoveL(grinder_mate, True)
 RDK.RunProgram('Portafilter Tool Detach (Grinder)', True)
 robot.MoveL(grinder_rest_approach, True)
 
-### Pick up grinder tool
-##robot.MoveJ(intermediate, True)
-##RDK.RunProgram('Grinder Tool Attach (Stand)', True)
-##robot.MoveJ(intermediate, True)
-##
+# Pick up grinder tool
+robot.MoveJ(intermediate, True)
+RDK.RunProgram('Grinder Tool Attach (Stand)', True)
+robot.MoveJ(intermediate, True)
+
 ### Press grinder start button
 ##robot.MoveJ(grinder_start_approach, True)
 ##robot.MoveL(grinder_start_press, True)
@@ -128,22 +138,28 @@ robot.MoveL(grinder_rest_approach, True)
 ##robot.MoveL(grinder_stop_press, True)
 ##robot.MoveL(grinder_stop_approach, True)
 ##
-### Pull grinder lever
-##robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
-##robot.MoveJ(grinder_lever_approach, True)
-##
-##robot.MoveJ(grinder_lever_pull_0, True)
+# Pull grinder lever
+robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
+robot.MoveJ(grinder_lever_approach, True)
+
+robot.MoveJ(grinder_lever_pull_0, True)
+robot.MoveL(grinder_lever_pull_1, True)
+#robodk.pause(1)
+robot.MoveL(grinder_lever_pull_2, True)
+#robodk.pause(1)
+robot.MoveL(grinder_lever_pull_1, True)
+robot.MoveL(grinder_lever_pull_0, True)
+
 ##robot.MoveL(grinder_lever_pull_1, True)
-###robodk.pause(1)
 ##robot.MoveL(grinder_lever_pull_2, True)
-##robodk.pause(1)
+##robot.MoveL(grinder_lever_pull_1, True)
 ##robot.MoveL(grinder_lever_pull_0, True)
-##robot.MoveJ(grinder_lever_approach, True)
-##
-### Return grinder tool to stand
-##robot.MoveJ(intermediate, True)
-##RDK.RunProgram('Grinder Tool Detach (Stand)', True)
-##robot.MoveJ(intermediate, True)
+robot.MoveJ(grinder_lever_approach, True)
+
+# Return grinder tool to stand
+robot.MoveJ(intermediate, True)
+RDK.RunProgram('Grinder Tool Detach (Stand)', True)
+robot.MoveJ(intermediate, True)
 
 # Pick portafilter up from grinder
 robot.MoveJ(grinder_intermediate, True)
@@ -164,7 +180,8 @@ robot.MoveL(tamper_press_1, True)
 robot.MoveL(tamper_press_approach, True)
 
 # Move to Silvia
-#robot.MoveJ(silvia_deliver, True)
+robot.MoveL(silvia_deliver_1, True)
+robot.MoveL(silvia_deliver_2, True)
 
 
 ##robot.MoveJ(intermediate, True)

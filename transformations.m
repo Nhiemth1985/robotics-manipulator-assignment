@@ -22,4 +22,7 @@ T_grinder_lever / Ttcp_grinderPull;
 T_tamper_level / Ttcp_portaCenter;
 
 % Tamper press
-T_tamper_press / Ttcp_portaCenter
+T_tamper_press / Ttcp_portaCenter;
+
+% Silvia approach
+T_silvia_deliver / Ttcp_portaCenter
