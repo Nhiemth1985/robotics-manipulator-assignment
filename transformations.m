@@ -26,3 +26,6 @@ T_tamper_press / Ttcp_portaCenter;
 
 % Silvia approach
 T_silvia_deliver / Ttcp_portaCenter
+
+% Cup
+Tcups / Ttcp_

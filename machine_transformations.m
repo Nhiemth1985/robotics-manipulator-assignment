@@ -18,6 +18,9 @@ tamper_local = [-80; 0; -55];
 
 % Cups
 cups_frame_offset = [1.49; -600.54; -20];
+deg_cups = 180;
+Rw_cups = rotz(deg_cups);
+Tw_cups = [Rw_cups cups_frame_offset; 0 0 0 1];
 
 
 % Silvia
