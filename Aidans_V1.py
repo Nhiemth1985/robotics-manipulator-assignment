@@ -194,7 +194,7 @@ robot.MoveL(cup_got_1, blocking=True)
 robot.MoveL(cup_got_2, blocking=True)
 robot.MoveJ(cup_got_3, blocking=True)
     #approach silvia
-robot.MoveJ(silvia_cup_1, blocking=True) #problem here
+robot.MoveJ(silvia_cup_1, blocking=True) #problem here. also note: am approaching from the side because it seemed better in the model. This might need to be changed
     #place cup
 robot.MoveL(silvia_cup_2, blocking=True)
 RDK.RunProgram('Cup Tool Open', True)
