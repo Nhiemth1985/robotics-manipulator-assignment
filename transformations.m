@@ -24,8 +24,15 @@ T_tamper_level / Ttcp_portaCenter;
 % Tamper press
 T_tamper_press / Ttcp_portaCenter;
 
-% Silvia approach
-T_silvia_deliver / Ttcp_portaCenter
+% Silvia deliver
+T_silvia_deliver / Ttcp_portaCenter;
+
+% Silvia Cup Place
+T_silvia_cup / Ttcp_cupCenter
+
+% Silvia Cup Approach
+T_silvia_approach / Ttcp_cupCenter
 
 % Cup
-Tcups / Ttcp_
+T_cup_approach / Ttcp_cupCenter;
+T_cup_get / Ttcp_cupCenter;
