@@ -65,8 +65,23 @@ cup_got_3 = [ 54.453591, -123.107305, 134.504375, -11.397323, 54.453386,  140.00
 #silvia_cup_1 = [-23.975574, -61.085049, 105.484535, -44.399486, -23.975574, -40.002176]
 #silvia_cup_2 = [0.244494, -55.349720, 95.334369, -39.984645, -19.755506, -40.002181]
 silvia_cup_1 = [86.524128, -95.697889, 131.839345, 323.858559, -197.225863, 140.000000]
-silvia_cup_2 = [52.709861, -86.512602, 122.891770, 323.858559, -231.040130, 140.000000]
+silvia_cup_2 = [52.710196, -85.775029, 123.476767, 322.536165, -231.039405, 140.000188]  #might need to be better
 
+silvia_but_all_a=[-11.223930, -81.315641, 128.851895, 132.463120,  26.231573, -130.001561]
+
+silvia_but_1_a = [  0.667095, -58.565224,  94.804271, 143.759837,  14.340548, -130.001041]
+silvia_but_1_c = [  3.369485, -58.084892,  93.985987, 144.097533,  11.638158, -130.000780]
+silvia_but_1_on= [  3.784337, -57.829304,  95.368749, 142.459133,  11.223306, -130.000729]
+silvia_but_1_off=[  3.784333, -59.039831,  94.705995, 144.332414,  11.223310, -130.000729]
+
+silvia_but_2_a = [ -1.517774, -64.571542, 104.751372, 139.819197,  16.525416, -130.001191]
+silvia_but_2_c = [  1.932265, -64.688816, 104.939937, 139.747656,  13.075378, -130.000932]
+silvia_but_2_on= [  2.512842, -63.773848, 105.387370, 138.385199,  12.494801, -130.000875]
+silvia_but_2_off=[  2.512837, -65.136388, 104.703740, 140.431368,  12.494806, -130.000875]
+
+cup_drop_1 = [47.441334, -130.826791, 150.195265, 340.630484, -265.058656, 139.999631]
+cup_drop_2 = [4.074385, -112.974729, 148.826667, 324.105159, -357.175603, 140.041143]
+cup_dest = [42.231443, -82.043133, 134.097830, -52.054697, 42.231443, 138.747817]
 
 
 bstart_approach_np = np.array([
@@ -137,6 +152,11 @@ silvia_capproach_np = np.array([
    [ 0.6428  , -0.7660  ,       0 , 187.0000],
    [      0  ,       0  ,       0 ,   1.0000]])
 
+silvia_but1_np = np.array([
+   [ 0.6209  , -0.7399  ,  0.2588 ,-501.3279],
+   [ 0.1664  , -0.1983  , -0.9659 ,-267.1753],
+   [ 0.7660  ,  0.6428  ,       0 , 313.4900],
+   [      0  ,       0  ,       0 ,   1.0000]])
 
 bstart_approach = Mat(bstart_approach_np.tolist())
 bstop_approach = Mat(bstop_approach_np.tolist())
@@ -149,6 +169,7 @@ cup_approach = Mat(cup_approach_np.tolist())
 cup_get = Mat(cup_get_np.tolist())
 silvia_cup = Mat(silvia_cup_np.tolist())
 silvia_capproach = Mat(silvia_capproach_np.tolist())
+silvia_but1 = Mat(silvia_but1_np.tolist())
 
 ##robot.MoveJ(silvia_approach, True)
 ##robodk.pause(2)
@@ -156,14 +177,14 @@ silvia_capproach = Mat(silvia_capproach_np.tolist())
 # Move robot to home
 robot.MoveJ(target_home, blocking=True)
 
-# Pick up cup tool
+#Aidan Code Start
+     #Pick up cup tool
 robot.MoveJ(intermediate, blocking=True)
 RDK.RunProgram('Cup Tool Attach (Stand)', True)
 robot.MoveJ(intermediate, blocking=True)
 robot.MoveJ(intermediate_pt2, blocking=True)
 RDK.RunProgram('Cup Tool Open', True)
-
-#Get cup
+    #Get cup
 robot.MoveJ(cup_get_1, blocking=True)
 robot.MoveL(cup_get_2, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
@@ -180,16 +201,56 @@ RDK.RunProgram('Cup Tool Open', True)
 robot.MoveL(silvia_cup_1, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
     #lose tool
-robot.MoveJ(intermediate_pt2, blocking=True)
+robot.MoveJ(intermediate_pt2, blocking=True) #problem here
 RDK.RunProgram('Cup Tool Detach (Stand)', True)
     #get button presser
 RDK.RunProgram('Grinder Tool Attach (Stand)', True)
 robot.MoveJ(intermediate, blocking=True)
 robot.MoveJ(intermediate_pt2, blocking=True)
     #press buttons
-
+robot.MoveJ(silvia_but_all_a, blocking=True)
+    #button 1
+robot.MoveL(silvia_but_1_a, blocking=True)
+robot.MoveL(silvia_but_1_on, blocking=True)
+robot.MoveL(silvia_but_1_a, blocking=True)
+    #button 2
+robot.MoveL(silvia_but_2_a, blocking=True)
+robot.MoveL(silvia_but_2_on, blocking=True)
+robot.MoveL(silvia_but_2_a, blocking=True)
+    #wait
+robodk.pause(3)
+    #button 2
+robot.MoveL(silvia_but_2_a, blocking=True)
+robot.MoveL(silvia_but_2_off, blocking=True)
+robot.MoveL(silvia_but_2_a, blocking=True)
+    #button 1
+robot.MoveL(silvia_but_1_a, blocking=True)
+robot.MoveL(silvia_but_1_off, blocking=True)
+robot.MoveL(silvia_but_1_a, blocking=True)
+robot.MoveL(silvia_but_all_a, blocking=True)
     #drop tool
 RDK.RunProgram('Grinder Tool Detach (Stand)', True)
-
+    #get cup tool
+RDK.RunProgram('Cup Tool Attach (Stand)', True)
+robot.MoveJ(intermediate, blocking=True)
+robot.MoveJ(intermediate_pt2, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
+    #get cup of coffee
+robot.MoveJ(cup_got_3, blocking=True)
+robot.MoveJ(silvia_cup_1, blocking=True) #problem here
+robot.MoveL(silvia_cup_2, blocking=True)
+RDK.RunProgram('Cup Tool Close', True)
+robot.MoveL(silvia_cup_1, blocking=True)
+    #place cup on table
+robot.MoveL(cup_drop_1, blocking=True)
+robot.MoveL(cup_drop_2, blocking=True)
+robot.MoveL(cup_dest, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
+robot.MoveL(cup_drop_2, blocking=True)
+    #return tool
+robot.MoveJ(intermediate, blocking=True) #problem here
+RDK.RunProgram('Cup Tool Close', True)
+RDK.RunProgram('Cup Tool Detach (Stand)', True)
+    #be done
 robot.MoveJ(intermediate, blocking=True)
 robot.MoveJ(target_home, blocking=True)

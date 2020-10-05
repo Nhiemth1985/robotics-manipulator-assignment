@@ -27,11 +27,12 @@ T_tamper_press / Ttcp_portaCenter;
 % Silvia deliver
 T_silvia_deliver / Ttcp_portaCenter;
 
-% Silvia Cup Place
-T_silvia_cup / Ttcp_cupCenter
+% Silvia Cup
+T_silvia_cup / Ttcp_cupCenter;
+T_silvia_approach / Ttcp_cupCenter;
 
-% Silvia Cup Approach
-T_silvia_approach / Ttcp_cupCenter
+%Silvia buttons
+T_silvia_but1 / Ttcp_grinderPush
 
 % Cup
 T_cup_approach / Ttcp_cupCenter;
