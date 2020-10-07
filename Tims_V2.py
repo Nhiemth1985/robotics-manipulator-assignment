@@ -38,17 +38,18 @@ grinder_lever_approach = [-50.601499, -119.661808, -91.614578, -148.721936, -110
 grinder_lever_pull_0 = [-48.257997, -115.858025, -97.690815, -146.449506, -108.257871, -129.997563]
 grinder_lever_pull_1 = [-46.489258, -111.275445, -104.688084, -144.035216, -97.295584, -129.997695]
 #grinder_lever_pull_2 = [-39.433879, -103.776906, -114.550852, -141.671506, -76.958955, -129.997793]
-grinder_lever_pull_2 = [-36.615796, -101.373065, -117.680736, -140.945553, -71.640872, -129.997801]
+grinder_lever_pull_2 = [-35.891320, -99.516541, -120.008226, -140.474584, -70.916396, -129.997810]
 
-tamper_level_approach = [-8.063858, -114.463801, -111.981385, -124.030028, -127.943230, 145.889671]
+tamper_level_approach = [-9.244861, -113.499031, -113.575156, -123.244162, -129.107685, 146.141503]
 tamper_press_approach = [130.247688, -87.550834, -208.082242, -101.577011, 12.462490, 176.553340]
-tamper_level_1 = [-8.063843, -112.915219, -111.371733, -126.188263, -127.943216, 145.889668]
-tamper_level_2 = [-18.107326, -106.294823, -121.562597, -120.935006, -137.824646, 148.353094]
+tamper_level_1 = [-9.244831, -110.400855, -112.261502, -127.655996, -129.107656, 146.141497]
+tamper_level_2 = [-18.107311, -104.576578, -120.812969, -123.402882, -137.824630, 148.353090]
 tamper_press_1 = [148.796873, -79.567094, -222.797280, -73.042598, 29.420526, 153.496873]
 tamper_press_2 = [7.321906, -98.160660, -134.443571, -119.261240, -112.735810, 143.161025]
 
 silvia_deliver_1 = [-22.012830, -96.710934, -146.480964, -65.766794, -9.661230, 89.359257]
-silvia_deliver_2 = [-72.302374, -107.859273, 266.687385, -167.255511, -297.054130, 143.855340]
+#silvia_deliver_2 = [-72.302374, -107.859273, 266.687385, -167.255511, -297.054130, 143.855340]
+silvia_deliver_2 = [-72.300000, -119.290000, -109.030000, 39.900000, -45.000000, -36.140000]
 
 bstart_approach_np = np.array([
     
@@ -146,6 +147,7 @@ robot.MoveJ(grinder_lever_pull_0, True)
 robot.MoveL(grinder_lever_pull_1, True)
 #robodk.pause(1)
 robot.MoveL(grinder_lever_pull_2, True)
+robodk.pause(1)
 #robodk.pause(1)
 robot.MoveL(grinder_lever_pull_1, True)
 robot.MoveL(grinder_lever_pull_0, True)
@@ -169,8 +171,11 @@ robot.MoveL(grinder_rest_approach, True)
 
 # Scrape coffee grinds
 robot.MoveJ(tamper_level_approach, True)
+robodk.pause(1)
 robot.MoveJ(tamper_level_1, True)
+robodk.pause(1)
 robot.MoveL(tamper_level_2, True)
+robodk.pause(1)
 
 # Tamp coffee
 robot.MoveL(tamper_press_approach, True)

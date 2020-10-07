@@ -70,5 +70,9 @@ silvia_deliver_global = [-150; -300; 300];
 T_silvia_deliver = [roty(-90)*rotx(-45) silvia_deliver_global; 0 0 0 1];
 
 
+% Cup grab
+
+
+
 
 save('Machine Transforms')
