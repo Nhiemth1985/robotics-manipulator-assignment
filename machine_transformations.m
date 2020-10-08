@@ -42,6 +42,17 @@ grinder_lever_local = [-35.82; 83.8; -153];
 tamper_level_local = [70; 0; -32]; 
 tamper_press_local = [-80; 0; -55];
 
+cup_approach_local = [0; -100; 204];
+cup_get_local = [0; 0; 204];
+
+silvia_cup_local = [-10; 55.00; -201.38];
+silvia_approach_local = [150; 55.00; -201.38];
+
+silvia_but1_local = [50.67; 98.75; -27.89];
+silvia_but2_local = [50.67; 35.75; -27.89];
+silvia_but3_local = [50.67; 35.75; -61.39];
+silvia_but4_local = [50.67; 35.75; -94.89];
+
 % Global points
 grinder_rest_global = Tw_grinder*[grinder_rest_local;1];
 grinder_start_global = Tw_grinder*[grinder_start_local;1];
@@ -50,6 +61,14 @@ grinder_lever_global = Tw_grinder*[grinder_lever_local;1];
 
 tamper_level_global = Tw_tamper*[tamper_level_local;1];
 tamper_press_global = Tw_tamper*[tamper_press_local;1];
+
+cup_approach_global = Tw_cups*[cup_approach_local;1];
+cup_get_global = Tw_cups*[cup_get_local;1];
+
+silvia_cup_global = Tw_silvia*[silvia_cup_local;1];
+silvia_approach_global = Tw_silvia*[silvia_approach_local;1];
+
+silvia_but1_global = Tw_silvia*[silvia_but1_local;1];
 
 % Define transformation matricies, need to determine the orientation of the
 % frames
@@ -64,6 +83,12 @@ T_tamper_press_local = [roty(-90)*rotx(-90) tamper_press_local; 0 0 0 1];
 T_tamper_level = Tw_tamper*T_tamper_level_local;
 T_tamper_press = Tw_tamper*T_tamper_press_local;
 
+T_cup_approach = [rotz(90)*roty(-90) cup_approach_global(1:3); 0 0 0 1];
+T_cup_get = [rotz(90)*roty(-90) cup_get_global(1:3); 0 0 0 1];
+
+T_silvia_cup = [rotz(105)*roty(-90) silvia_cup_global(1:3); 0 0 0 1];
+T_silvia_approach = [rotz(90)*roty(-90) silvia_approach_global(1:3); 0 0 0 1];
+T_silvia_but1 = [rotz(15)*rotx(90) silvia_but1_global(1:3); 0 0 0 1];
 
 % Silvia deliver
 silvia_deliver_global = [-150; -300; 300];
