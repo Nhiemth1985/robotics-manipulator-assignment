@@ -24,6 +24,8 @@ grinder_mate = RDK.Item('Lux Rest Mated')
 
 # Custom Targets
 intermediate = [-80.640000, -85.030000, -72.070000, -113.070000, 89.500000, -185.690000]
+intermediate_pt2 = [38.290695, -103.137039, 114.532374, -61.135172, 67.923789, -79.650850]
+intermediate_pt3 = [86.300000, -93.210000, 61.070000, -36.250000, 162.340000, 139.000000]
 grinder_intermediate = [-6.476325, -81.638717, -149.649052, -111.057543, -37.627386, 133.643]
 
 # Note for the report: finding appropriate intermediate joint angles sometimes required finding
@@ -48,8 +50,19 @@ tamper_press_1 = [148.796873, -79.567094, -222.797280, -73.042598, 29.420526, 15
 tamper_press_2 = [7.321906, -98.160660, -134.443571, -119.261240, -112.735810, 143.161025]
 
 silvia_deliver_1 = [-22.012830, -96.710934, -146.480964, -65.766794, -9.661230, 89.359257]
-#silvia_deliver_2 = [-72.302374, -107.859273, 266.687385, -167.255511, -297.054130, 143.855340]
 silvia_deliver_2 = [-72.300000, -119.290000, -109.030000, 39.900000, -45.000000, -36.140000]
+
+cup_get_1 = [ 53.324239, -97.393798, 156.574035, -59.180493, 53.324034, -39.999341]
+#cup_get_1 = [-53.324707, -82.606202, -156.574035, -120.819507, -53.324912, -39.999647]
+cup_get_2 = [ 67.303327, -82.065674, 141.093869, -59.028418, 67.303122, -39.999409]
+cup_got_1 = [ 67.303327, -97.012459, 134.231551, -37.219315, 67.303122, -39.999409]
+cup_got_2 = [ 50.808510, -120.143402, 147.951690, -27.808553, 50.808305, -39.999327]
+#cup_got_3 = [ 54.453591, -123.107305, 134.504375, -11.397323, 54.453386,  140.000]
+cup_got_3 = [54.453591, -123.107305, 134.504375, -11.397323, 54.453386, 140.000000]
+
+silvia_cup_1 = [86.524128, -95.697888, 131.839344, -36.141440, 162.774137, 140.000002]
+#silvia_cup_2 = [52.710196, -85.775029, 123.476767, 322.536165, -231.039405, 140.000188]  #might need to be better
+silvia_cup_2 = [-91.877414, -94.319312, -123.373899, -142.993502, -15.627841, 140.511926]
 
 bstart_approach_np = np.array([
     
@@ -145,10 +158,7 @@ robot.MoveJ(grinder_lever_approach, True)
 
 robot.MoveJ(grinder_lever_pull_0, True)
 robot.MoveL(grinder_lever_pull_1, True)
-#robodk.pause(1)
 robot.MoveL(grinder_lever_pull_2, True)
-robodk.pause(1)
-#robodk.pause(1)
 robot.MoveL(grinder_lever_pull_1, True)
 robot.MoveL(grinder_lever_pull_0, True)
 
@@ -171,11 +181,8 @@ robot.MoveL(grinder_rest_approach, True)
 
 # Scrape coffee grinds
 robot.MoveJ(tamper_level_approach, True)
-robodk.pause(1)
 robot.MoveJ(tamper_level_1, True)
-robodk.pause(1)
 robot.MoveL(tamper_level_2, True)
-robodk.pause(1)
 
 # Tamp coffee
 robot.MoveL(tamper_press_approach, True)
@@ -187,13 +194,35 @@ robot.MoveL(tamper_press_approach, True)
 # Move to Silvia
 robot.MoveL(silvia_deliver_1, True)
 robot.MoveL(silvia_deliver_2, True)
+robodk.pause(30)
 
 
-##robot.MoveJ(intermediate, True)
-##RDK.RunProgram("Portafilter Tool Detach (Stand)", True)
+# Pick up cup tool
+robot.MoveJ(intermediate, blocking=True)
+RDK.RunProgram('Cup Tool Attach (Stand)', True)
+robot.MoveJ(intermediate, blocking=True)
+robot.MoveJ(intermediate_pt2, blocking=True)
 
-
-
+# Get cup
+robot.MoveJ(cup_get_1, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
+robot.MoveL(cup_get_2, blocking=True)
+RDK.RunProgram('Cup Tool Close', True)
+    #lift
+robot.MoveL(cup_got_1, blocking=True)
+    #back
+robot.MoveL(cup_got_2, blocking=True)
+robot.MoveJ(cup_got_3, blocking=True)
+    #approach silvia
+robot.MoveJ(silvia_cup_1, blocking=True) #problem here. also note: am approaching from the side because it seemed better in the model. This might need to be changed
+    #place cup
+robot.MoveL(silvia_cup_2, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
+robot.MoveL(silvia_cup_1, blocking=True)
+RDK.RunProgram('Cup Tool Close', True)
+    #lose tool
+robot.MoveJ(intermediate_pt3, blocking=True)
+RDK.RunProgram('Cup Tool Detach (Stand)', True)
 
 # TESTING custom targets
 ##robot.MoveJ(grinder_start_press, True)
