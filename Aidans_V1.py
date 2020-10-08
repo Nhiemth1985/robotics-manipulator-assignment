@@ -25,7 +25,8 @@ grinder_mate = RDK.Item('Lux Rest Mated')
 # Custom Targets
 #swap between intermediate and int...pt2 to change elbow direction for easier access to silvia
 intermediate = [-80.640000, -85.030000, -72.070000, -113.070000, 89.500000, -185.690000]
-intermediate_pt2 = [70.150000, -94.990000, 72.160000, -67.260000, -90.5200000, 145.100000]
+intermediate_pt2 = [38.290695, -103.137039, 114.532374, -61.135172, 67.923789, -79.650850]
+intermediate_pt3 = [86.300000, -93.210000, 61.070000, -36.250000, 162.340000, 139.000000]
 grinder_intermediate = [-6.476325, -81.638717, -149.649052, -111.057543, -37.627386, 133.643]
 
 # Note for the report: finding appropriate intermediate joint angles sometimes required finding
@@ -57,15 +58,20 @@ silvia_deliver_2 = [-72.302374, -107.859273, 266.687385, -167.255511, -297.05413
 #cup_got_1 = [-67.09,  -87.74, -137.06, 44.80, 67.09, -40.00]
 #cup_got_2 = [-53.10,  -68.21, -150.70, 38.91, 53.10, 140.00]
 cup_get_1 = [ 53.324239, -97.393798, 156.574035, -59.180493, 53.324034, -39.999341]
+#cup_get_1 = [-53.324707, -82.606202, -156.574035, -120.819507, -53.324912, -39.999647]
 cup_get_2 = [ 67.303327, -82.065674, 141.093869, -59.028418, 67.303122, -39.999409]
 cup_got_1 = [ 67.303327, -97.012459, 134.231551, -37.219315, 67.303122, -39.999409]
-cup_got_2 = [ 54.453904, -116.047880, 146.244107, -30.196479, 54.453699, -39.999348]
-cup_got_3 = [ 54.453591, -123.107305, 134.504375, -11.397323, 54.453386,  140.000]
+cup_got_2 = [ 50.808510, -120.143402, 147.951690, -27.808553, 50.808305, -39.999327]
+#cup_got_3 = [ 54.453591, -123.107305, 134.504375, -11.397323, 54.453386,  140.000]
+cup_got_3 = [54.453591, -123.107305, 134.504375, -11.397323, 54.453386, 140.000000]
 
 #silvia_cup_1 = [-23.975574, -61.085049, 105.484535, -44.399486, -23.975574, -40.002176]
 #silvia_cup_2 = [0.244494, -55.349720, 95.334369, -39.984645, -19.755506, -40.002181]
-silvia_cup_1 = [86.524128, -95.697889, 131.839345, 323.858559, -197.225863, 140.000000]
-silvia_cup_2 = [52.710196, -85.775029, 123.476767, 322.536165, -231.039405, 140.000188]  #might need to be better
+#silvia_cup_1 = [86.524128, -95.697889, 131.839345, 323.858559, -197.225863, 140.000000]
+#silvia_cup_1 = [-50.192258, -115.061650, -140.975626, 76.037287, -26.057751, -40.000023]
+silvia_cup_1 = [86.524128, -95.697888, 131.839344, -36.141440, 162.774137, 140.000002]
+#silvia_cup_2 = [52.710196, -85.775029, 123.476767, 322.536165, -231.039405, 140.000188]  #might need to be better
+silvia_cup_2 = [-91.877414, -94.319312, -123.373899, -142.993502, -15.627841, 140.511926]
 
 silvia_but_all_a=[-11.223930, -81.315641, 128.851895, 132.463120,  26.231573, -130.001561]
 
@@ -183,9 +189,9 @@ robot.MoveJ(intermediate, blocking=True)
 RDK.RunProgram('Cup Tool Attach (Stand)', True)
 robot.MoveJ(intermediate, blocking=True)
 robot.MoveJ(intermediate_pt2, blocking=True)
-RDK.RunProgram('Cup Tool Open', True)
     #Get cup
 robot.MoveJ(cup_get_1, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
 robot.MoveL(cup_get_2, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
     #lift
@@ -201,7 +207,7 @@ RDK.RunProgram('Cup Tool Open', True)
 robot.MoveL(silvia_cup_1, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
     #lose tool
-robot.MoveJ(intermediate_pt2, blocking=True) #problem here
+robot.MoveJ(intermediate_pt3, blocking=True)
 RDK.RunProgram('Cup Tool Detach (Stand)', True)
     #get button presser
 RDK.RunProgram('Grinder Tool Attach (Stand)', True)
