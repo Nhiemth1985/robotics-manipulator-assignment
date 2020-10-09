@@ -40,8 +40,8 @@ grinder_start_press = [-58.787624, -144.584541, -58.741238, -156.757587, 178.724
 grinder_lever_approach = [-50.601499, -119.661808, -91.614578, -148.721936, -110.601373, -129.997491]
 grinder_lever_pull_0 = [-48.257997, -115.858025, -97.690815, -146.449506, -108.257871, -129.997563]
 grinder_lever_pull_1 = [-46.489258, -111.275445, -104.688084, -144.035216, -97.295584, -129.997695]
-#grinder_lever_pull_2 = [-39.433879, -103.776906, -114.550852, -141.671506, -76.958955, -129.997793]
-grinder_lever_pull_2 = [-35.891320, -99.516541, -120.008226, -140.474584, -70.916396, -129.997810]
+grinder_lever_pull_2 = [-33.143411, -98.457705, -121.299577, -140.242213, -64.418488, -129.997781]
+#grinder_lever_pull_2 = [-35.891320, -99.516541, -120.008226, -140.474584, -70.916396, -129.997810]
 
 tamper_level_approach = [-9.244861, -113.499031, -113.575156, -123.244162, -129.107685, 146.141503]
 tamper_press_approach = [130.247688, -87.550834, -208.082242, -101.577011, 12.462490, 176.553340]
@@ -68,15 +68,15 @@ silvia_cup_2 = [-91.877414, -92.664577, -121.998134, -146.024001, -15.627840, 14
 #silvia_but_all_a=[-11.223930, -81.315641, 128.851895, -227.53688,  26.231573, -130.001561]
 silvia_but_all_a=[-11.223930, -96.652221, 112.051698, -15.400103, -26.231573, 49.998439]
 
-silvia_but_2_a = [ -1.517774, -64.571542, 104.751372, 139.819197,  16.525416, -130.001191]
-silvia_but_2_c = [  1.932265, -64.688816, 104.939937, 139.747656,  13.075378, -130.000932]
-silvia_but_2_off=[  2.512842, -63.773848, 105.387370, 138.385199,  12.494801, -130.000875]
-silvia_but_2_on= [  2.512837, -65.136388, 104.703740, 140.431368,  12.494806, -130.000875]
+silvia_but_2_a = [ -1.517778, -65.017866, 104.515054, 140.501838, 16.525420, -130.001191]
+silvia_but_2_c = [  2.512836, -65.136388, 104.703740, 140.431369, 12.494806, -130.000875]
+silvia_but_2_off=[  2.512839, -64.689016, 104.940262, 139.747474, 12.494804, -130.000875]
+silvia_but_2_on= [  2.512835, -65.576850, 104.458604, 141.116966, 12.494808, -130.000875]
 
-cup_drop_1 = [47.441334, -130.826791, 150.195265, 340.630484, -265.058656, 139.999631]
-cup_drop_2 = [4.074385, -112.974729, 148.826667, 324.105159, -357.175603, 140.041143]
-cup_drop_3 = [4.071791, -124.418215, 125.024500, 359.350773, -357.178197, 140.041182]
-cup_dest = [42.231462, -84.549923, 133.100195, -48.550486, 42.231603, 138.748587]
+#cup_drop_1 = [47.441334, -130.826791, 150.195265, 340.630484, -265.058656, 139.999631]
+cup_drop_1 = [4.074385, -112.974729, 148.826667, 324.105159, -357.175603, 140.041143]
+cup_drop_2 = [4.071791, -124.418215, 125.024500, 359.350773, -357.178197, 140.041182]
+cup_dest = [42.231462, -82.043086, 134.097959, -52.055087, 42.231603, 138.748587]
 
 bstart_approach_np = np.array([
     
@@ -231,9 +231,6 @@ robot.MoveJ(cup_got_3, blocking=True)
 robot.MoveJ(silvia_cup_1, blocking=True) 
     #place cup
 robot.MoveL(silvia_cup_2, blocking=True)
-
-robodk.pause(15) #wait for measurement
-
 RDK.RunProgram('Cup Tool Open', True)
 robot.MoveL(silvia_cup_1, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
@@ -259,6 +256,7 @@ robot.MoveL(silvia_but_2_a, blocking=True)
     #escape
 robot.MoveL(silvia_but_all_a, blocking=True)
     #drop tool
+robot.MoveJ(intermediate_pt2, blocking=True)
 RDK.RunProgram('Grinder Tool Detach (Stand)', True)
     #get cup tool
 RDK.RunProgram('Cup Tool Attach (Stand)', True)
@@ -273,15 +271,11 @@ RDK.RunProgram('Cup Tool Close', True)
 robot.MoveL(silvia_cup_1, blocking=True)
     #place cup on table
 robot.MoveL(cup_drop_1, blocking=True)
-robot.MoveL(cup_drop_2, blocking=True)
 robot.MoveL(cup_dest, blocking=True)
-
-robodk.pause(15) #wait for measurement
-
 RDK.RunProgram('Cup Tool Open', True)
-robot.MoveL(cup_drop_2, blocking=True)
+robot.MoveL(cup_drop_1, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
-robot.MoveL(cup_drop_3, blocking=True)
+robot.MoveL(cup_drop_2, blocking=True)
     #return tool
 robot.MoveJ(intermediate_pt2, blocking=True)
 RDK.RunProgram('Cup Tool Detach (Stand)', True)
