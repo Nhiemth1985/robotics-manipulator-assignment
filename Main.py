@@ -24,7 +24,8 @@ grinder_mate = RDK.Item('Lux Rest Mated')
 
 # Custom Targets
 intermediate = [-80.640000, -85.030000, -72.070000, -113.070000, 89.500000, -185.690000]
-intermediate_pt2 = [38.290695, -103.137039, 114.532374, -61.135172, 67.923789, -79.650850]
+#intermediate_pt2 = [38.290695, -103.137039, 114.532374, -61.135172, 67.923789, -79.650850]
+intermediate_pt2 = [70.150000, -94.990000, 72.160000, -67.260000, -90.5200000, 145.100000]
 intermediate_pt3 = [86.300000, -93.210000, 61.070000, -36.250000, 162.340000, 139.000000]
 grinder_intermediate = [-6.476325, -81.638717, -149.649052, -111.057543, -37.627386, 133.643]
 
@@ -62,7 +63,20 @@ cup_got_3 = [54.453591, -123.107305, 134.504375, -11.397323, 54.453386, 140.0000
 
 silvia_cup_1 = [86.524128, -95.697888, 131.839344, -36.141440, 162.774137, 140.000002]
 #silvia_cup_2 = [52.710196, -85.775029, 123.476767, 322.536165, -231.039405, 140.000188]  #might need to be better
-silvia_cup_2 = [-91.877414, -94.319312, -123.373899, -142.993502, -15.627841, 140.511926]
+silvia_cup_2 = [-91.877414, -92.664577, -121.998134, -146.024001, -15.627840, 140.511925]
+
+#silvia_but_all_a=[-11.223930, -81.315641, 128.851895, -227.53688,  26.231573, -130.001561]
+silvia_but_all_a=[-11.223930, -96.652221, 112.051698, -15.400103, -26.231573, 49.998439]
+
+silvia_but_2_a = [ -1.517774, -64.571542, 104.751372, 139.819197,  16.525416, -130.001191]
+silvia_but_2_c = [  1.932265, -64.688816, 104.939937, 139.747656,  13.075378, -130.000932]
+silvia_but_2_off=[  2.512842, -63.773848, 105.387370, 138.385199,  12.494801, -130.000875]
+silvia_but_2_on= [  2.512837, -65.136388, 104.703740, 140.431368,  12.494806, -130.000875]
+
+cup_drop_1 = [47.441334, -130.826791, 150.195265, 340.630484, -265.058656, 139.999631]
+cup_drop_2 = [4.074385, -112.974729, 148.826667, 324.105159, -357.175603, 140.041143]
+cup_drop_3 = [4.071791, -124.418215, 125.024500, 359.350773, -357.178197, 140.041182]
+cup_dest = [42.231462, -84.549923, 133.100195, -48.550486, 42.231603, 138.748587]
 
 bstart_approach_np = np.array([
     
@@ -214,16 +228,66 @@ robot.MoveL(cup_got_1, blocking=True)
 robot.MoveL(cup_got_2, blocking=True)
 robot.MoveJ(cup_got_3, blocking=True)
     #approach silvia
-robot.MoveJ(silvia_cup_1, blocking=True) #problem here. also note: am approaching from the side because it seemed better in the model. This might need to be changed
+robot.MoveJ(silvia_cup_1, blocking=True) 
     #place cup
 robot.MoveL(silvia_cup_2, blocking=True)
+
+robodk.pause(15) #wait for measurement
+
 RDK.RunProgram('Cup Tool Open', True)
 robot.MoveL(silvia_cup_1, blocking=True)
 RDK.RunProgram('Cup Tool Close', True)
     #lose tool
 robot.MoveJ(intermediate_pt3, blocking=True)
 RDK.RunProgram('Cup Tool Detach (Stand)', True)
+    #get button presser
+RDK.RunProgram('Grinder Tool Attach (Stand)', True)
+robot.MoveJ(intermediate, blocking=True)
+robot.MoveJ(intermediate_pt2, blocking=True)
+    #press buttons
+robot.MoveJ(silvia_but_all_a, blocking=True)
+    #button
+robot.MoveL(silvia_but_2_a, blocking=True)
+robot.MoveL(silvia_but_2_on, blocking=True)
+robot.MoveL(silvia_but_2_a, blocking=True)
+    #wait
+robodk.pause(3)
+    #button
+robot.MoveL(silvia_but_2_a, blocking=True)
+robot.MoveL(silvia_but_2_off, blocking=True)
+robot.MoveL(silvia_but_2_a, blocking=True)
+    #escape
+robot.MoveL(silvia_but_all_a, blocking=True)
+    #drop tool
+RDK.RunProgram('Grinder Tool Detach (Stand)', True)
+    #get cup tool
+RDK.RunProgram('Cup Tool Attach (Stand)', True)
+robot.MoveJ(intermediate, blocking=True)
+robot.MoveJ(intermediate_pt2, blocking=True)
+RDK.RunProgram('Cup Tool Open', True)
+    #get cup of coffee
+robot.MoveJ(cup_got_3, blocking=True)
+robot.MoveJ(silvia_cup_1, blocking=True)
+robot.MoveL(silvia_cup_2, blocking=True)
+RDK.RunProgram('Cup Tool Close', True)
+robot.MoveL(silvia_cup_1, blocking=True)
+    #place cup on table
+robot.MoveL(cup_drop_1, blocking=True)
+robot.MoveL(cup_drop_2, blocking=True)
+robot.MoveL(cup_dest, blocking=True)
 
+robodk.pause(15) #wait for measurement
+
+RDK.RunProgram('Cup Tool Open', True)
+robot.MoveL(cup_drop_2, blocking=True)
+RDK.RunProgram('Cup Tool Close', True)
+robot.MoveL(cup_drop_3, blocking=True)
+    #return tool
+robot.MoveJ(intermediate_pt2, blocking=True)
+RDK.RunProgram('Cup Tool Detach (Stand)', True)
+    #be done
+robot.MoveJ(intermediate, blocking=True)
+robot.MoveJ(target_home, blocking=True)
 # TESTING custom targets
 ##robot.MoveJ(grinder_start_press, True)
 ##robodk.pause(1)
