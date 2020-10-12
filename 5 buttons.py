@@ -132,113 +132,113 @@ tamp_approach = Mat(tamp_approach_np.tolist())
 silvia_approach = Mat(silvia_approach_np.tolist())
 
 # Move robot to home
-robot.MoveJ(target_home, blocking=True)
-
-# Pick up portafilter tool
-robot.MoveJ(intermediate)
-RDK.RunProgram('Portafilter Tool Attach (Stand)', True)
-robot.MoveJ(intermediate, blocking=True)
-
-# Place portafilter in Grinder
-robot.MoveJ(grinder_intermediate, True)
-robot.MoveJ(grinder_rest_approach, True)
-robot.MoveL(grinder_approach, True)
-robot.MoveL(grinder_mate, True)
-RDK.RunProgram('Portafilter Tool Detach (Grinder)', True)
-robot.MoveL(grinder_rest_approach, True)
-
-# Pick up grinder tool
-robot.MoveJ(intermediate, True)
-RDK.RunProgram('Grinder Tool Attach (Stand)', True)
-robot.MoveJ(intermediate, True)
-
-# Press grinder start button
-robot.MoveJ(grinder_start_approach, True)
-robot.MoveL(grinder_start_press, True)
-robot.MoveL(grinder_start_approach, True)
-robodk.pause(2)
-
-# Press grinder stop button
-robot.MoveJ(grinder_stop_approach, True)
-robot.MoveL(grinder_stop_press, True)
-robot.MoveL(grinder_stop_approach, True)
-
-# Pull grinder lever
-robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
-robot.MoveJ(grinder_lever_approach, True)
-
-robot.MoveJ(grinder_lever_pull_0, True)
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_2, True)
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_0, True)
-
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_2, True)
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_0, True)
-
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_2, True)
-robot.MoveL(grinder_lever_pull_1, True)
-robot.MoveL(grinder_lever_pull_0, True)
-robot.MoveJ(grinder_lever_approach, True)
-
-# Return grinder tool to stand
-robot.MoveJ(intermediate, True)
-RDK.RunProgram('Grinder Tool Detach (Stand)', True)
-robot.MoveJ(intermediate, True)
-
+##robot.MoveJ(target_home, blocking=True)
+##
+### Pick up portafilter tool
+##robot.MoveJ(intermediate)
+##RDK.RunProgram('Portafilter Tool Attach (Stand)', True)
+##robot.MoveJ(intermediate, blocking=True)
+##
+### Place portafilter in Grinder
+##robot.MoveJ(grinder_intermediate, True)
+##robot.MoveJ(grinder_rest_approach, True)
+##robot.MoveL(grinder_approach, True)
+##robot.MoveL(grinder_mate, True)
+##RDK.RunProgram('Portafilter Tool Detach (Grinder)', True)
+##robot.MoveL(grinder_rest_approach, True)
+##
+### Pick up grinder tool
+##robot.MoveJ(intermediate, True)
+##RDK.RunProgram('Grinder Tool Attach (Stand)', True)
+##robot.MoveJ(intermediate, True)
+##
+### Press grinder start button
+##robot.MoveJ(grinder_start_approach, True)
+##robot.MoveL(grinder_start_press, True)
+##robot.MoveL(grinder_start_approach, True)
+##robodk.pause(2)
+##
+### Press grinder stop button
+##robot.MoveJ(grinder_stop_approach, True)
+##robot.MoveL(grinder_stop_press, True)
+##robot.MoveL(grinder_stop_approach, True)
+##
+### Pull grinder lever
+##robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
+##robot.MoveJ(grinder_lever_approach, True)
+##
+##robot.MoveJ(grinder_lever_pull_0, True)
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_2, True)
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_0, True)
+##
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_2, True)
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_0, True)
+##
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_2, True)
+##robot.MoveL(grinder_lever_pull_1, True)
+##robot.MoveL(grinder_lever_pull_0, True)
+##robot.MoveJ(grinder_lever_approach, True)
+##
+### Return grinder tool to stand
+##robot.MoveJ(intermediate, True)
+##RDK.RunProgram('Grinder Tool Detach (Stand)', True)
+##robot.MoveJ(intermediate, True)
+##
 # Pick portafilter up from grinder
-robot.MoveJ(grinder_intermediate, True)
-robot.MoveJ(grinder_rest_approach, True)
-RDK.RunProgram("Portafilter Tool Attach (Grinder)", True)
-robot.MoveL(grinder_rest_approach, True)
-
-# Scrape coffee grinds
-robot.MoveJ(tamper_level_approach, True)
-robot.MoveJ(tamper_level_1, True)
-robot.MoveL(tamper_level_2, True)
-
-# Tamp coffee
-robot.MoveL(tamper_press_approach, True)
-robot.MoveL(tamper_press_1, True)
-robot.MoveL(tamper_press_2, True)
-robot.MoveL(tamper_press_1, True)
-robot.MoveL(tamper_press_approach, True)
-
-# Move to Silvia
-robot.MoveL(silvia_deliver_1, True)
-robot.MoveL(silvia_deliver_2, True)
-robodk.pause(30)
-
-
+##robot.MoveJ(grinder_intermediate, True)
+##robot.MoveJ(grinder_rest_approach, True)
+##RDK.RunProgram("Portafilter Tool Attach (Grinder)", True)
+##robot.MoveL(grinder_rest_approach, True)
+##
+### Scrape coffee grinds
+##robot.MoveJ(tamper_level_approach, True)
+##robot.MoveJ(tamper_level_1, True)
+##robot.MoveL(tamper_level_2, True)
+##
+### Tamp coffee
+##robot.MoveL(tamper_press_approach, True)
+##robot.MoveL(tamper_press_1, True)
+##robot.MoveL(tamper_press_2, True)
+##robot.MoveL(tamper_press_1, True)
+##robot.MoveL(tamper_press_approach, True)
+##
+### Move to Silvia
+##robot.MoveL(silvia_deliver_1, True)
+##robot.MoveL(silvia_deliver_2, True)
+##robodk.pause(30)
+##
+##
 # Pick up cup tool
-robot.MoveJ(intermediate, blocking=True)
-RDK.RunProgram('Cup Tool Attach (Stand)', True)
-robot.MoveJ(intermediate, blocking=True)
-robot.MoveJ(intermediate_pt2, blocking=True)
-
-# Get cup
-robot.MoveJ(cup_get_1, blocking=True)
-RDK.RunProgram('Cup Tool Open', True)
-robot.MoveL(cup_get_2, blocking=True)
-RDK.RunProgram('Cup Tool Close', True)
-    #lift
-robot.MoveL(cup_got_1, blocking=True)
-    #back
-robot.MoveL(cup_got_2, blocking=True)
-robot.MoveJ(cup_got_3, blocking=True)
-    #approach silvia
-robot.MoveJ(silvia_cup_1, blocking=True) 
-    #place cup
-robot.MoveL(silvia_cup_2, blocking=True)
-RDK.RunProgram('Cup Tool Open', True)
-robot.MoveL(silvia_cup_1, blocking=True)
-RDK.RunProgram('Cup Tool Close', True)
-    #lose tool
-robot.MoveJ(intermediate_pt3, blocking=True)
-RDK.RunProgram('Cup Tool Detach (Stand)', True)
+##robot.MoveJ(intermediate, blocking=True)
+##RDK.RunProgram('Cup Tool Attach (Stand)', True)
+##robot.MoveJ(intermediate, blocking=True)
+##robot.MoveJ(intermediate_pt2, blocking=True)
+##
+### Get cup
+##robot.MoveJ(cup_get_1, blocking=True)
+##RDK.RunProgram('Cup Tool Open', True)
+##robot.MoveL(cup_get_2, blocking=True)
+##RDK.RunProgram('Cup Tool Close', True)
+##    #lift
+##robot.MoveL(cup_got_1, blocking=True)
+##    #back
+##robot.MoveL(cup_got_2, blocking=True)
+##robot.MoveJ(cup_got_3, blocking=True)
+##    #approach silvia
+##robot.MoveJ(silvia_cup_1, blocking=True) 
+##    #place cup
+##robot.MoveL(silvia_cup_2, blocking=True)
+##RDK.RunProgram('Cup Tool Open', True)
+##robot.MoveL(silvia_cup_1, blocking=True)
+##RDK.RunProgram('Cup Tool Close', True)
+##    #lose tool
+##robot.MoveJ(intermediate_pt3, blocking=True)
+##RDK.RunProgram('Cup Tool Detach (Stand)', True)
     #get button presser
 RDK.RunProgram('Grinder Tool Attach (Stand)', True)
 robot.MoveJ(intermediate, blocking=True)
@@ -260,31 +260,42 @@ robot.MoveL(silvia_but_all_a, blocking=True)
     #drop tool
 robot.MoveJ(intermediate_pt2, blocking=True)
 RDK.RunProgram('Grinder Tool Detach (Stand)', True)
-    #get cup tool
-RDK.RunProgram('Cup Tool Attach (Stand)', True)
-robot.MoveJ(intermediate, blocking=True)
-robot.MoveJ(intermediate_pt2, blocking=True)
-RDK.RunProgram('Cup Tool Open', True)
-    #get cup of coffee
-robot.MoveJ(cup_got_3, blocking=True)
-robot.MoveJ(silvia_cup_1, blocking=True)
-robot.MoveL(silvia_cup_2, blocking=True)
-RDK.RunProgram('Cup Tool Close', True)
-robot.MoveL(silvia_cup_1, blocking=True)
-    #place cup on table
-robot.MoveL(cup_drop_1, blocking=True)
-robot.MoveL(cup_dest, blocking=True)
-RDK.RunProgram('Cup Tool Open', True)
-robot.MoveL(cup_drop_1, blocking=True)
-RDK.RunProgram('Cup Tool Close', True)
-robot.MoveL(cup_drop_2, blocking=True)
-    #return tool
-robot.MoveJ(intermediate_pt2, blocking=True)
-RDK.RunProgram('Cup Tool Detach (Stand)', True)
-    #be done
-robot.MoveJ(intermediate, blocking=True)
-robot.MoveJ(target_home, blocking=True)
-
+##    #get cup tool
+##RDK.RunProgram('Cup Tool Attach (Stand)', True)
+##robot.MoveJ(intermediate, blocking=True)
+##robot.MoveJ(intermediate_pt2, blocking=True)
+##RDK.RunProgram('Cup Tool Open', True)
+##    #get cup of coffee
+##robot.MoveJ(cup_got_3, blocking=True)
+##robot.MoveJ(silvia_cup_1, blocking=True)
+##robot.MoveL(silvia_cup_2, blocking=True)
+##RDK.RunProgram('Cup Tool Close', True)
+##robot.MoveL(silvia_cup_1, blocking=True)
+##    #place cup on table
+##robot.MoveL(cup_drop_1, blocking=True)
+##robot.MoveL(cup_dest, blocking=True)
+##RDK.RunProgram('Cup Tool Open', True)
+##robot.MoveL(cup_drop_1, blocking=True)
+##RDK.RunProgram('Cup Tool Close', True)
+##robot.MoveL(cup_drop_2, blocking=True)
+##    #return tool
+##robot.MoveJ(intermediate_pt2, blocking=True)
+##RDK.RunProgram('Cup Tool Detach (Stand)', True)
+##    #be done
+##robot.MoveJ(intermediate, blocking=True)
+##robot.MoveJ(target_home, blocking=True)
+# TESTING custom targets
+##robot.MoveJ(grinder_start_press, True)
+##robodk.pause(1)
+##robot.MoveJ(grinder_stop_press, True)
+##robodk.pause(1)
+##robot.MoveJ(grinder_lever_pull_0, True)
+##robodk.pause(1)
+##robot.MoveJ(grinder_lever_pull_1, True)
+##robodk.pause(1)
+##robot.MoveJ(grinder_lever_pull_2, True)
+##robodk.pause(1)
+##robot.MoveJ(grinder_rest_approach, True)
 
 
 
