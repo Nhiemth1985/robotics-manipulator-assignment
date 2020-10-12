@@ -1,3 +1,6 @@
+% Code to automatically find the frames HT that relates the equipment
+% frames to the world (UR5 Base) frame
+
 clc, clear, close all
 
 % Grinder

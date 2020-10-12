@@ -1,12 +1,15 @@
+% Assigning frames to points of interest on the coffee making tools
+% with reference to the UR5 master tool frame
+% Calculates and saves the HT for each point on each tool
+
 clc, clear, close all
 
-Rtcp_tool = rotz(-50);
-noRot = rotz(0);
+% All tools have a -50 deg rotation from the master tool frame, 0 offset
 Ttcp_tool = [rotz(-50) [0; 0; 0]; 0 0 0 1];
 
 % Grinder tool
-Ttcp_grinderTool = Ttcp_tool;
-TgrinderTool_push = [noRot [0; 0; 102.82]; 0 0 0 1];
+Ttcp_grinderTool = Ttcp_tool
+TgrinderTool_push = [zeros(3) [0; 0; 102.82]; 0 0 0 1];
 TgrinderTool_pull = [roty(180) [-50; 0; 67.06]; 0 0 0 1];
 
 Ttcp_grinderPush = Ttcp_grinderTool*TgrinderTool_push;

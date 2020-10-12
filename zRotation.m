@@ -1,8 +1,13 @@
 function [T, Rz, deg] = zRotation(global_pt1, global_pt2, local_pt2)
 %ZROTATION Returns the rotation matrix relating Frame A to Frame B
-%   Assumes there is a roation about the z axis
 %   Requries two points in the global frame that are along the same axis of
 %   the local frame
+%   global_pt2 must be the same point as local_pt2
+%   local_pt2 is used to determine which axis is defined by the two global
+%   poiints, and in what direction
+%   Assumes there is a roation about the z axis
+%   Assumes global_pt1 is the origin of Frame B in global coords
+
 
 for i = 1:3
     if (local_pt2(i) == 0)
