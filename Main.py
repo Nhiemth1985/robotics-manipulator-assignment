@@ -22,15 +22,13 @@ robot.setPoseTool(robot.PoseTool())
 grinder_approach = RDK.Item('Lux Rest Approach')
 grinder_mate = RDK.Item('Lux Rest Mated')
 
-# Custom Targets
+# Custom joint angle targets
 intermediate = [-80.640000, -85.030000, -72.070000, -113.070000, 89.500000, -185.690000]
 #intermediate_pt2 = [38.290695, -103.137039, 114.532374, -61.135172, 67.923789, -79.650850]
 intermediate_pt2 = [70.150000, -94.990000, 72.160000, -67.260000, -90.5200000, 145.100000]
 intermediate_pt3 = [86.300000, -93.210000, 61.070000, -36.250000, 162.340000, 139.000000]
 grinder_intermediate = [-6.476325, -81.638717, -149.649052, -111.057543, -37.627386, 133.643]
 
-# Note for the report: finding appropriate intermediate joint angles sometimes required finding
-#   the opposite equivalent angle to make it easier to move between joint angles without hitting anything
 grinder_rest_approach = [-13.815385, -92.211762, -144.12, -114.908578, -58.969983, 135.458]
 grinder_stop_approach = [-61.107196, -148.511559, -51.002562, -160.515472, 176.405029, -40.031784]
 grinder_start_approach = [-61.208056, -145.437313, -57.067153, -157.524321, 176.304169, -40.030976]
@@ -78,49 +76,51 @@ cup_drop_1 = [4.074385, -112.974729, 148.826667, 324.105159, -357.175603, 140.04
 cup_drop_2 = [4.071791, -124.418215, 125.024500, 359.350773, -357.178197, 140.041182]
 cup_dest = [42.231462, -82.043086, 134.097959, -52.055087, 42.231603, 138.748587]
 
+
+# Some HTs calculated using matlab
 bstart_approach_np = np.array([
     
- [  -0.4116   ,-0.3454  ,  0.8434 , 385.6817],
- [   0.6461 ,   0.5421  ,  0.5373, -612.6833],
-  [ -0.6428 ,   0.7660  ,       0,   86.4500],
-  [       0   ,      0  ,       0  ,  1.0000]],)
+   [  -0.4116,   -0.3454,  0.8434,  385.6817],
+   [   0.6461,    0.5421,  0.5373, -612.6833],
+   [  -0.6428,    0.7660,       0,   86.4500],
+   [       0 ,         0,       0,   1.0000]],)
 
 bstop_approach_np = np.array([
-      [ -0.4116  , -0.3454    ,0.8434 , 377.3392],
-      [  0.6461  ,  0.5421   , 0.5373 ,-598.0040],
-      [ -0.6428  ,  0.7660   ,      0 ,  86.4500],
-      [       0  ,       0   ,      0 ,   1.0000]])
+   [  -0.4116, -0.3454,  0.8434,  377.3392],
+   [   0.6461,  0.5421,  0.5373, -598.0040],
+   [  -0.6428,  0.7660,       0,   86.4500],
+   [        0,       0,       0,   1.0000]])
 
 rest_approach_np = np.array([
-  [ -0.6022,   -0.3851 ,   0.6993,  348.9033],
-   [-0.4808 ,  -0.5243  , -0.7028 ,-299.6841],
-    [0.6373 ,  -0.7595  ,  0.1305 ,  91.8089],
-     [    0 ,        0   ,      0 ,   1.0000]])
+   [ -0.6022,  -0.3851,   0.6993,  348.9033],
+   [ -0.4808,  -0.5243,  -0.7028, -299.6841],
+   [  0.6373,  -0.7595,   0.1305,   91.8089],
+   [       0,        0,        0,    1.0000]])
 
 lever_approach_np = np.array([
 
-  [  0.4545  , -0.5417 ,   0.7071 , 436.0883],
-  [  0.4545 ,  -0.5417 ,  -0.7071, -435.4650],
-   [ 0.7660  ,  0.6428  ,       0 , 161.1300],
-   [      0  ,       0  ,       0 ,   1.0000]])
+   [  0.4545,  -0.5417,   0.7071,   436.0883],
+   [  0.4545,  -0.5417,  -0.7071,  -435.4650],
+   [  0.7660,   0.6428,       0 ,   161.1300],
+   [       0,        0,       0 ,    1.0000]])
 
 level_approach_np = np.array([
- [   0.3136 ,   0.4103 ,   0.8563,  510.9815],
- [  -0.7039  , -0.5048  ,  0.4997, -132.4847],
- [   0.6373  , -0.7595  ,  0.1305 , 155.5053],
-  [       0  ,       0  ,       0  ,  1.0000]])
+   [  0.3136,   0.4103,   0.8563,   510.9815],
+   [ -0.7039,  -0.5048,   0.4997,  -132.4847],
+   [  0.6373,  -0.7595,   0.1305,   155.5053],
+   [       0,        0,        0,    1.0000]])
 
 tamp_approach_np = np.array([
-  [  0.3136 ,   0.4103  ,  0.8563,  435.3809],
- [  -0.7039 ,  -0.5048  ,  0.4997 ,  -2.9294],
-  [  0.6373  , -0.7595   , 0.1305  ,132.5053],
-   [      0  ,       0  ,       0 ,   1.0000]])
+   [  0.3136,   0.4103,  0.8563,  435.3809],
+   [ -0.7039,  -0.5048,  0.4997,   -2.9294],
+   [  0.6373,  -0.7595,  0.1305,  132.5053],
+   [       0,        0,       0,   1.0000]])
 
 silvia_approach_np = np.array([
-   [ 0.6010 ,   0.3838 ,  -0.7011,  -48.9496],
-    [0.4823 ,   0.5252 ,   0.7011, -401.0504],
-   [ 0.6373  , -0.7595  ,  0.1305 , 276.4353],
-     [    0  ,       0  ,       0 ,   1.0000]])
+   [ 0.6010,   0.3838,  -0.7011,   -48.9496],
+   [ 0.4823,   0.5252,   0.7011,  -401.0504],
+   [ 0.6373,  -0.7595,   0.1305,   276.4353],
+   [      0,        0,        0,    1.0000]])
 
 
 bstart_approach = Mat(bstart_approach_np.tolist())
@@ -130,6 +130,11 @@ lever_approach = Mat(lever_approach_np.tolist())
 level_approach = Mat(level_approach_np.tolist())
 tamp_approach = Mat(tamp_approach_np.tolist())
 silvia_approach = Mat(silvia_approach_np.tolist())
+
+
+#--------------------------------------------------
+# Program Start
+#--------------------------------------------------
 
 # Move robot to home
 robot.MoveJ(target_home, blocking=True)
@@ -156,14 +161,14 @@ robot.MoveJ(intermediate, True)
 robot.MoveJ(grinder_start_approach, True)
 robot.MoveL(grinder_start_press, True)
 robot.MoveL(grinder_start_approach, True)
-robodk.pause(2)
+robodk.pause(3)
 
 # Press grinder stop button
 robot.MoveJ(grinder_stop_approach, True)
 robot.MoveL(grinder_stop_press, True)
 robot.MoveL(grinder_stop_approach, True)
 
-# Pull grinder lever
+# Pull grinder lever 3 times
 robot.MoveJ([-50.993480, -116.190224, -77.674069, -166.148459, 43.464147, -83.291969], True)
 robot.MoveJ(grinder_lever_approach, True)
 
@@ -211,7 +216,6 @@ robot.MoveL(tamper_press_approach, True)
 robot.MoveL(silvia_deliver_1, True)
 robot.MoveL(silvia_deliver_2, True)
 robodk.pause(30)
-
 
 # Pick up cup tool
 robot.MoveJ(intermediate, blocking=True)
