@@ -1,10 +1,12 @@
+% Finds the HTs to get points of interest of tools to points of
+% interest on equipment in the world frame. 
+
 clc, clear, close all
 
 load("Machine Transforms")
 load("Tool Transformations")
 
 % Forward slash operator to inverse Ttcp_tool transform
-
 
 % Grinder approach with portafilter tool
 T_grinder_rest / Ttcp_portaRest;
@@ -24,7 +26,6 @@ T_tamper_level / Ttcp_portaCenter;
 % Tamper press
 T_tamper_press / Ttcp_portaCenter;
 
-
 % Silvia deliver
 T_silvia_deliver / Ttcp_portaCenter;
 
@@ -33,7 +34,7 @@ T_silvia_cup / Ttcp_cupCenter;
 T_silvia_approach / Ttcp_cupCenter;
 
 %Silvia buttons
-T_silvia_but1 / Ttcp_grinderPush
+T_silvia_but1 / Ttcp_grinderPush;
 
 % Cup
 T_cup_approach / Ttcp_cupCenter;

@@ -15,6 +15,7 @@ for i = 1:3
     end
 end
 
+% Determines which axis is defined by the two global points
 if (i == 1)
     k = 2;
 elseif (i == 2)
@@ -28,6 +29,7 @@ else
     local_ax = global_pt1(1:2) - global_pt2(1:2);
 end
 
+% Normalize
 local_ax = local_ax ./ norm(local_ax);
 
 if (i == 1)
@@ -39,6 +41,8 @@ end
 rad = acos(dot_p);
 deg = acosd(dot_p);
 
+% If the two global points define an axis in the negative direction, 
+% flip it to get the positive direction
 if (local_pt2(k) < 0)
     rad = 2*pi - rad;
     deg = 360 - deg;

@@ -1,3 +1,5 @@
+% Script to find the equipment transformations and to assign frames to
+% the points of interest on the equipment
 clc, clear, close all
 
 % Find local frame transformations
@@ -7,7 +9,6 @@ grinder_rest_global = [370.66; -321.55; 66.86];
 grinder_rest_local = [157.61; 0; -250.45];
 
 [Tw_grinder, Rw_grinder, deg_grinder] = zRotation(grinder_frame_offset, grinder_rest_global, grinder_rest_local);
-
 
 % Tamper stand
 tamper_frame_offset = [599.13; 0; 211.07];
@@ -29,7 +30,6 @@ silvia_pt2_global = [-577.06; -446.46; 341.38];
 silvia_pt2_local = [0; 218.0; 0];
 
 [Tw_silvia, Rw_silvia, deg_silvia] = zRotation(silvia_frame_offset, silvia_pt2_global, silvia_pt2_local);
-
 
 
 % Find local point transfomrations
@@ -93,11 +93,6 @@ T_silvia_but1 = [rotz(15)*rotx(90) silvia_but1_global(1:3); 0 0 0 1];
 % Silvia deliver
 silvia_deliver_global = [-150; -300; 300];
 T_silvia_deliver = [roty(-90)*rotx(-45) silvia_deliver_global; 0 0 0 1];
-
-
-% Cup grab
-
-
 
 
 save('Machine Transforms')
